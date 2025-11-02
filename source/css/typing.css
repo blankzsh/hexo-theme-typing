@@ -1113,6 +1113,141 @@ blockquote {
   display: none;
 }
 
+/* 主题切换按钮样式 */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-left: 15px;
+  vertical-align: middle;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(127, 127, 127, 0.1);
+}
+
+.theme-icon-sun,
+.theme-icon-moon {
+  font-style: normal;
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1) rotate(0deg);
+}
+
+/* 主题切换时的图标动画效果 */
+.theme-toggle:not(.dark-theme-active) .theme-icon-moon {
+  opacity: 0;
+  transform: scale(0.3) rotate(-180deg);
+}
+
+.theme-toggle.dark-theme-active .theme-icon-sun {
+  opacity: 0;
+  transform: scale(0.3) rotate(180deg);
+}
+
+/* 深色模式下的主题切换按钮 */
+.dark .theme-toggle {
+  color: #ddd !important;
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+.dark .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff !important;
+}
+
+/* 深色模式下的图标显示优先级 */
+.dark .theme-icon-sun,
+.dark .theme-icon-moon {
+  display: inline-block !important;
+  visibility: visible !important;
+  font-style: normal !important;
+}
+
+/* 确保图标切换时的显示状态 */
+.dark .theme-toggle.dark-theme-active .theme-icon-sun {
+  opacity: 0 !important;
+  transform: scale(0.3) rotate(180deg) !important;
+}
+
+.dark .theme-toggle.dark-theme-active .theme-icon-moon {
+  opacity: 1 !important;
+  transform: scale(1) rotate(0deg) !important;
+}
+
+.dark .theme-toggle:not(.dark-theme-active) .theme-icon-sun {
+  opacity: 1 !important;
+  transform: scale(1) rotate(0deg) !important;
+}
+
+.dark .theme-toggle:not(.dark-theme-active) .theme-icon-moon {
+  opacity: 0 !important;
+  transform: scale(0.3) rotate(-180deg) !important;
+}
+
+/* 左侧导航布局下的主题切换按钮 */
+.nav-left .theme-toggle {
+  display: block;
+  margin-left: 0;
+  margin-top: 0;
+  padding-bottom: 10px;
+  text-align: left;
+  border: 0;
+  color: #777;
+  width: auto;
+  background: none;
+  font-size: inherit;
+}
+
+.nav-left .theme-toggle:hover {
+  color: #1abc9c;
+  border: 0;
+  background: none;
+}
+
+.dark .nav-left .theme-toggle {
+  color: #aaa;
+}
+
+.dark .nav-left .theme-toggle:hover {
+  color: #fff;
+  border: 0;
+  background: none;
+}
+
+/* 水平导航栏中的主题切换按钮 */
+.main-nav:not(.nav-left) .theme-toggle {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 15px;
+  border: none;
+  background: none;
+  color: #777;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.main-nav:not(.nav-left) .theme-toggle:hover {
+  background-color: rgba(127, 127, 127, 0.1);
+  color: #1abc9c;
+}
+
+.dark .main-nav:not(.nav-left) .theme-toggle {
+  color: #ddd;
+}
+
+.dark .main-nav:not(.nav-left) .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #22c5e5;
+}
+
 .mobile-nav {
   display: none;
 }
@@ -1481,6 +1616,13 @@ blockquote {
     justify-content: space-between;
   }
 
+  /* 移动端主题切换按钮 */
+  .theme-toggle {
+    font-size: 18px;
+    padding: 8px 12px;
+    margin-left: 10px;
+  }
+
   /* display links when menu button is clicked */
   /* use grid to display each link in new line */
   #mobile-menu-toggle:checked + .mobile-nav-link {
@@ -1498,25 +1640,72 @@ blockquote {
 
 /************  dark mode  ***********/
 
+/* 全局主题过渡动画 */
+body {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 防止页面加载时的主题闪烁 */
+body.no-transition {
+  transition: none !important;
+}
+
+/* 主题切换时的平滑过渡效果 */
+* {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              text-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 例外：不需要过渡的元素 */
+img, video, iframe {
+  transition: none !important;
+}
+
+/* 主题图标需要独立的过渡控制 */
+.theme-icon-sun,
+.theme-icon-moon {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
 .dark {
   background-color: #3f3f3f;
   color: #d8d8d8;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark .container,
-  .dark .footer {
-    background-color: #3f3f3f;
-  }
+.dark .footer {
+  background-color: #3f3f3f;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 容器和主要元素的过渡动画 */
+.container,
+.footer {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 .dark a {
     color: #ddd;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-.dark a:hover{
+.dark a:hover {
   color: #22c5e5;
-  border-bottom: solid 1px rgba(34, 197, 229, .2);
-  transition: color 100ms linear;
-  color: #fff;
+  border-bottom: solid 1px rgba(34, 197, 229, 0.2);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 为普通链接也添加过渡动画 */
+a {
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark .home {
@@ -1538,11 +1727,43 @@ blockquote {
 
 .dark .archive-container .header .main-nav-link, .dark .category-container .header .main-nav-link, .dark .tag-container .header .main-nav-link, .dark .article .header .main-nav-link, .dark .posts-container .header .main-nav-link {
         color: #aaa;
+        transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
 .dark .archive-container .header .main-nav-link:hover, .dark .category-container .header .main-nav-link:hover, .dark .tag-container .header .main-nav-link:hover, .dark .article .header .main-nav-link:hover, .dark .posts-container .header .main-nav-link:hover {
         color: #fff;
+        transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
+
+/* 为文章页面添加主题切换按钮样式支持 */
+.article .theme-toggle {
+  display: block !important;
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  padding-bottom: 10px !important;
+  text-align: left !important;
+  width: auto !important;
+  border: 0 !important;
+  color: #777 !important;
+  background: none !important;
+  font-size: inherit !important;
+}
+
+.article .theme-toggle:hover {
+  color: #1abc9c !important;
+  border: 0 !important;
+  background: none !important;
+}
+
+.dark .article .theme-toggle {
+  color: #aaa !important;
+}
+
+.dark .article .theme-toggle:hover {
+  color: #fff !important;
+  border: 0 !important;
+  background: none !important;
+}
 
 .dark .archive-container .page-nav,
     .dark .archive-container .article-nav,
@@ -1847,6 +2068,25 @@ pre .keyword,
     .article .nav-left .main-nav-link {
       display: block;
       padding-bottom: 10px;
+    }
+    /* 修复移动端文章页面的主题切换按钮 */
+    .article .nav-left .theme-toggle {
+      display: block !important;
+      padding-bottom: 10px !important;
+      margin-top: 0 !important;
+      text-align: left !important;
+      width: auto !important;
+      border-left: 2px solid transparent !important;
+    }
+
+    .article .nav-left .theme-toggle:hover {
+      border-left-color: #1abc9c !important;
+      background-color: transparent !important;
+    }
+
+    .dark .article .nav-left .theme-toggle:hover {
+      border-left-color: #22c5e5 !important;
+      background-color: transparent !important;
     }
 }
 
