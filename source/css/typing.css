@@ -186,8 +186,10 @@ mark {
 
 /* 代码片断 */
 
-pre, code, pre tt {
-  font-family: Courier, 'Courier New', monospace;
+code, pre tt {
+  font-family: 'Courier New', monospace;
+  font-weight: 400;
+  font-style: normal;
 }
 
 pre {
@@ -1886,6 +1888,7 @@ a {
   font-size: 14px;
   overflow: auto;
   line-height: 1.8;
+  font-family: 'Hack Nerd Font Mono', 'Hack', 'Courier New', monospace;
 }
 
 .article-entry pre code {
@@ -1901,6 +1904,7 @@ a {
   font-size: 14px;
   overflow: auto;
   line-height: 1.8;
+  font-family: 'Hack Nerd Font Mono', 'Hack', 'Courier New', monospace;
 }
 
 .article-entry .highlight pre {
@@ -1943,6 +1947,454 @@ a {
 .article-entry .highlight .line.marked {
       background: #e6e6e6;
 }
+
+/* macOS风格的代码块三个点 */
+.article-entry .highlight {
+    position: relative;
+}
+
+.article-entry .highlight .mac-dots {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.article-entry .highlight .mac-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.article-entry .highlight .mac-dots .dot-red {
+    background-color: #ff5f56;
+    border: 1px solid #e0443e;
+}
+
+.article-entry .highlight .mac-dots .dot-yellow {
+    background-color: #ffbd2e;
+    border: 1px solid #dea123;
+}
+
+.article-entry .highlight .mac-dots .dot-green {
+    background-color: #27c93f;
+    border: 1px solid #1aad29;
+}
+
+/* 悬停效果 */
+.article-entry .highlight .mac-dots .dot:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.article-entry .highlight .mac-dots .dot-red:hover {
+    background-color: #ff6b63;
+    box-shadow: 0 0 8px rgba(255, 95, 86, 0.5);
+}
+
+.article-entry .highlight .mac-dots .dot-yellow:hover {
+    background-color: #ffcc42;
+    box-shadow: 0 0 8px rgba(255, 189, 46, 0.5);
+}
+
+.article-entry .highlight .mac-dots .dot-green:hover {
+    background-color: #2dd448;
+    box-shadow: 0 0 8px rgba(39, 201, 63, 0.5);
+}
+
+/* 暗色模式下的样式 */
+.dark .article-entry .highlight .mac-dots .dot-red {
+    background-color: #ff5f56;
+    border: 1px solid #ff4438;
+}
+
+.dark .article-entry .highlight .mac-dots .dot-yellow {
+    background-color: #ffbd2e;
+    border: 1px solid #ffcc00;
+}
+
+.dark .article-entry .highlight .mac-dots .dot-green {
+    background-color: #27c93f;
+    border: 1px solid #00c841;
+}
+
+/* 隐藏代码块行号 - 强化版本 */
+.article-entry .highlight .gutter,
+.article-entry .highlight .line-numbers,
+.article-entry .highlight td:first-child,
+.article-entry .highlight .lineno {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* 确保代码列占满宽度 */
+.article-entry .highlight td:last-child,
+.article-entry .highlight .code {
+    width: 100% !important;
+}
+
+.article-entry .highlight table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.article-entry .highlight td {
+    padding: 0;
+}
+
+/* 移除gutter后调整代码显示 */
+.article-entry .highlight .code {
+    width: 100%;
+}
+
+.article-entry .highlight .code pre {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Hack Nerd Font Mono', 'Hack', 'Courier New', monospace;
+}
+
+/* 为代码块添加上边距以避免与点重叠 */
+.article-entry .highlight,
+.article-entry pre {
+    padding-top: 35px !important;
+}
+
+.article-entry .highlight pre {
+    padding-top: 0 !important;
+    margin-top: 15px;
+}
+
+/* 代码块复制按钮样式 */
+.article-entry .highlight .copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: all 0.2s ease;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0.7;
+}
+
+.article-entry .highlight .copy-button:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: #1abc9c;
+.article-entry .highlight .copy-button.copied {
+    background: rgba(26, 188, 156, 0.9);
+    border-color: #1abc9c;
+    color: white;
+    opacity: 1;
+}
+
+.article-entry .highlight .copy-button.copied:hover {
+    background: rgba(26, 188, 156, 1);
+}
+
+/* 暗色模式下的复制按钮样式 */
+.dark .article-entry .highlight .copy-button {
+    background: rgba(30, 30, 30, 0.9);
+    border-color: #444;
+    color: #ccc;
+    opacity: 0.7;
+}
+
+.dark .article-entry .highlight .copy-button:hover {
+    background: rgba(40, 40, 40, 1);
+    border-color: #22c5e5;
+    color: #22c5e5;
+    box-shadow: 0 2px 8px rgba(34, 197, 229, 0.3);
+    opacity: 1;
+}
+
+.dark .article-entry .highlight .copy-button.copied {
+    background: rgba(34, 197, 229, 0.9);
+    border-color: #22c5e5;
+    color: white;
+    opacity: 1;
+}
+
+.dark .article-entry .highlight .copy-button.copied:hover {
+    background: rgba(34, 197, 229, 1);
+}
+
+.tags-content {
+    text-align: center;
+}
+
+.tags-title {
+    font-size: 2.5em;
+    font-weight: 200;
+    color: #333;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.tag-item {
+    display: inline-block;
+}
+
+.tag-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 20px;
+    color: #495057;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.tag-link:hover {
+    background: #e9ecef;
+    border-color: #1abc9c;
+.tag-name {
+    margin-right: 6px;
+}
+
+.tag-count {
+    background: rgba(26, 188, 156, 0.1);
+.no-tags {
+    color: #6c757d;
+    font-style: italic;
+    margin-top: 40px;
+}
+
+/* 暗色模式 */
+.dark .tags-title {
+    color: #d8d8d8;
+}
+
+.dark .tag-link {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+.dark .tag-link:hover {
+    background: #4a5568;
+    border-color: #22c5e5;
+    color: #22c5e5;
+}
+
+.dark .tag-count {
+    background: rgba(34, 197, 229, 0.2);
+    color: #22c5e5;
+}
+
+.dark .no-tags {
+    color: #a0aec0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .tags-container {
+        padding: 30px 15px;
+    }
+
+    .tags-title {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .tags-list {
+        gap: 8px;
+    }
+
+    .tag-link {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tags-container {
+        padding: 20px 10px;
+    }
+
+    .tags-title {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .tags-list {
+        gap: 6px;
+    }
+
+    .tag-link {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+
+    .tag-count {
+        font-size: 11px;
+        min-width: 18px;
+        padding: 1px 4px;
+    }
+}
+.tag-count {
+    font-size: 0.8em;
+    opacity: 0.6;
+    margin-left: 2px;
+    transition: color 0.2s ease;
+    font-weight: normal;
+}
+
+/* 保持原有的单个标签文章列表样式 */
+.tag-articles {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tag-articles .archives-wrap {
+    margin-bottom: 30px;
+}
+
+.tag-articles .archives {
+    border-left: 3px solid #1abc9c;
+    padding-left: 20px;
+}
+
+.tag-articles .archive-post {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.tag-articles .archive-post:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+/* 暗色模式下的标签云样式 */
+.dark .tag-cloud-header {
+    background: none;
+}
+
+.dark .tag-cloud-title {
+    color: #d8d8d8;
+}
+
+.dark .tag-cloud-content {
+    background: none;
+    color: #d8d8d8;
+}
+
+.dark .tag-cloud-item {
+    background: #333;
+    border-color: #444;
+    color: #d8d8d8;
+}
+
+.dark .tag-cloud-item:hover {
+    background: #444;
+    border-color: #22c5e5;
+    color: #22c5e5;
+}
+
+.dark .tag-articles .archive-post {
+    background: #333;
+    color: #d8d8d8;
+}
+
+.dark .tag-articles .archive-post:hover {
+    background: #444;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .article-entry .highlight .copy-button {
+        width: 28px;
+        height: 28px;
+        top: 8px;
+        right: 8px;
+    }
+
+    .article-entry .highlight .copy-button svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* 标签云响应式设计 */
+    .tag-cloud-container,
+    .archive-container,
+    .category-container,
+    .tag-container {
+        width: 90%;
+        max-width: none;
+    }
+
+    .tag-cloud {
+        gap: 8px;
+    }
+
+    .tag-cloud-item {
+        padding: 3px 10px;
+        font-size: 13px !important;
+    }
+
+    .tag-count {
+        font-size: 0.7em;
+    }
+
+    .tag-articles .archive-post {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tag-cloud-container,
+    .archive-container,
+    .category-container,
+    .tag-container {
+        width: 95%;
+    }
+
+    .tag-cloud {
+        gap: 6px;
+    }
+
+    .tag-cloud-item {
+        padding: 2px 8px;
+        font-size: 12px !important;
+    }
+
+    .tag-count {
+        display: none; /* 在小屏幕上隐藏文章数量 */
+    }
+}
+
 
 pre .comment,
   pre .title {
