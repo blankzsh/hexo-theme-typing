@@ -17,6 +17,140 @@
         background-color: #fff;
       }
 
+      /* 文章标题样式 - 全新优化版本 */
+      .post-title-link {
+        color: #1a1a1a !important;
+        font-weight: 600 !important;
+        font-size: 18px !important;
+        line-height: 1.5 !important;
+        letter-spacing: 0.02em !important;
+        display: inline-block !important;
+        padding: 4px 0 !important;
+        border-radius: 4px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        text-decoration: none !important;
+        position: relative !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+      }
+
+      /* 悬停效果 - 更柔和的交互 */
+      .post-title-link:hover {
+        color: #1976D2 !important;
+        transform: translateY(-1px) !important;
+        text-shadow: 0 1px 2px rgba(25, 118, 210, 0.2) !important;
+      }
+
+      /* 活跃状态 */
+      .post-title-link:active {
+        transform: translateY(0) !important;
+        color: #1565C0 !important;
+      }
+
+      /* 标题下方微妙的分隔线效果 */
+      .post-title-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #1976D2, #42A5F5);
+        border-radius: 1px;
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .post-title-link:hover::after {
+        width: 100%;
+      }
+
+      /* 深色模式适配 - 更舒适的深色配色 */
+      body.dark .post-title-link {
+        color: #e8e8e8 !important;
+      }
+
+      body.dark .post-title-link:hover {
+        color: #64B5F6 !important;
+        transform: translateY(-1px) !important;
+        text-shadow: 0 1px 2px rgba(100, 181, 246, 0.3) !important;
+      }
+
+      body.dark .post-title-link:active {
+        color: #42A5F5 !important;
+      }
+
+      body.dark .post-title-link::after {
+        background: linear-gradient(90deg, #64B5F6, #90CAF9);
+      }
+
+      /* 文章列表项的视觉优化 */
+      .posts-page div[style*="display: flex"] {
+        transition: all 0.2s ease !important;
+        border-radius: 8px !important;
+        margin-bottom: 16px !important;
+        padding: 20px 0 !important;
+        position: relative !important;
+      }
+
+      .posts-page div[style*="display: flex"]:hover {
+        background: rgba(25, 118, 210, 0.03) !important;
+        transform: translateX(4px) !important;
+      }
+
+      body.dark .posts-page div[style*="display: flex"]:hover {
+        background: rgba(100, 181, 246, 0.05) !important;
+      }
+
+      /* 年份标题优化 */
+      .posts-page h2 {
+        font-weight: 300 !important;
+        font-size: 24px !important;
+        color: #666 !important;
+        margin-bottom: 32px !important;
+        letter-spacing: 0.05em !important;
+        position: relative !important;
+        padding-bottom: 16px !important;
+      }
+
+      .posts-page h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, #1976D2, transparent);
+        border-radius: 1px;
+      }
+
+      body.dark .posts-page h2 {
+        color: #999 !important;
+      }
+
+      body.dark .posts-page h2::after {
+        background: linear-gradient(90deg, #64B5F6, transparent);
+      }
+
+      /* 确保文章容器在深色模式下的样式 */
+      body.dark .posts-page {
+        background-color: #1e1e1e !important;
+      }
+
+      body.dark .posts-page div[style*="max-width: 600px"] {
+        color: #fff !important;
+      }
+
+      body.dark .posts-page h2 {
+        color: #bbb !important;
+      }
+
+      body.dark .posts-page div[style*="border-bottom: 1px solid #f0f0f0"] {
+        border-bottom-color: #333 !important;
+      }
+
+      body.dark .posts-page div[style*="color: #999"] {
+        color: #bbb !important;
+      }
+
       /* 响应式设计 */
       @media (max-width: 768px) {
         div[style*="max-width: 600px"] {
@@ -39,8 +173,27 @@
         }
 
         h2[style*="font-size: 28px"] {
-          font-size: 24px !important;
+          font-size: 22px !important;
           margin-bottom: 25px !important;
+        }
+
+        /* 移动端标题优化 */
+        .post-title-link {
+          font-size: 17px !important;
+        }
+
+        /* 移动端交互优化 */
+        .posts-page div[style*="display: flex"]:hover {
+          transform: none !important;
+          background: transparent !important;
+        }
+
+        .posts-page div[style*="display: flex"]:active {
+          background: rgba(25, 118, 210, 0.05) !important;
+        }
+
+        body.dark .posts-page div[style*="display: flex"]:active {
+          background: rgba(100, 181, 246, 0.08) !important;
         }
       }
     </style>
@@ -76,7 +229,7 @@
         <% postsByYear[year].forEach(function(post) { %>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 15px 0; border-bottom: 1px solid #f0f0f0;">
             <div style="flex: 1; margin-right: 20px;">
-              <a href="<%- url_for(post.path) %>" style="color: #000; text-decoration: none; font-size: 16px; font-weight: 400; line-height: 1.4;">
+              <a href="<%- url_for(post.path) %>" class="post-title-link" title="<%= post.title %>">
                 <%- post.title %>
               </a>
             </div>

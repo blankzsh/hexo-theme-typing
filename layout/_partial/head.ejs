@@ -17,17 +17,103 @@
     title = __('tag') + ': ' + page.tag;
   }
   %>
+
+  <!-- SEO优化的标题 -->
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+
+  <!-- 基础Meta标签 -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <meta name="description" content="<% if (page.description){ %><%= page.description %><% } else if (config.description){ %><%= config.description %><% } else { %><%= theme.description %><% } %>">
+  <meta name="keywords" content="<% if (page.keywords){ %><%= page.keywords %><% } else if (page.tags && page.tags.length){ %><%= page.tags.map(function(tag) { return typeof tag === 'string' ? tag : (tag.name || ''); }).filter(Boolean).join(', ') %><% } else { %><%= config.keywords %><% } %>"
+  <meta name="author" content="<% if (page.author){ %><%= page.author %><% } else { %><%= config.author %><% } %>">
+
+  <!-- Canonical URL -->
+  <% if (page.permalink){ %>
+  <link rel="canonical" href="<%= page.permalink %>">
+  <% } else { %>
+  <link rel="canonical" href="<%= config.url + '/' + page.path %>">
+  <% } %>
+
+  <!-- 语言和地区 -->
+  <meta http-equiv="content-language" content="<%= config.language || 'zh-CN' %>">
+  <meta name="geo.region" content="CN">
+  <meta name="geo.placename" content="中国">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="<% if (is_post()){ %>article<% } else if (is_page()){ %>website<% } else { %>website<% } %>">
+  <meta property="og:title" content="<% if (title){ %><%= title %> | <% } %><%= config.title %>">
+  <meta property="og:description" content="<% if (page.description){ %><%= page.description %><% } else if (config.description){ %><%= config.description %><% } else { %><%= theme.description %><% } %>">
+  <meta property="og:image" content="<% if (page.cover){ %><%= page.cover %><% } else { %><%= config.url %>/images/og-image.jpg<% } %>">
+  <meta property="og:url" content="<% if (page.permalink){ %><%= page.permalink %><% } else { %><%= config.url + '/' + page.path %><% } %>">
+  <meta property="og:site_name" content="<%= config.title %>">
+  <meta property="og:locale" content="zh_CN">
+  <% if (is_post()){ %>
+  <meta property="article:section" content="<%
+  if (page.categories && page.categories.length && page.categories[0]) {
+    var cat = page.categories[0];
+    if (typeof cat === 'string') {
+      %><%= cat %><%
+    } else if (cat && cat.name) {
+      %><%= cat.name %><%
+    } else {
+      %>技术博客<%
+    }
+  } else {
+    %>技术博客<%
+  } %>">
+  <meta property="article:tag" content="<%
+  if (page.tags && page.tags.length) {
+    %><%= page.tags.map(function(tag) {
+      return typeof tag === 'string' ? tag : (tag.name || '');
+    }).filter(Boolean).join(', ') %><%
+  } %>">
+  <meta property="article:published_time" content="<%= page.date.toISOString() %>">
+  <meta property="article:modified_time" content="<%= page.updated.toISOString() %>">
+  <meta property="article:author" content="<%= config.author %>">
+  <% } %>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<% if (title){ %><%= title %> | <% } %><%= config.title %>">
+  <meta name="twitter:description" content="<% if (page.description){ %><%= page.description %><% } else if (config.description){ %><%= config.description %><% } else { %><%= theme.description %><% } %>">
+  <meta name="twitter:image" content="<% if (page.cover){ %><%= page.cover %><% } else { %><%= config.url %>/images/og-image.jpg<% } %>">
+
+  <!-- 技术信息 -->
+  <meta name="generator" content="<%- config.meta_generator ? 'Hexo 8.1.1' : '' %>">
+  <meta name="theme-color" content="#0E83C8">
+  <meta name="msapplication-TileColor" content="#0E83C8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- PWA -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="<%= config.title %>">
+  <meta name="application-name" content="<%= config.title %>">
+
+  <!-- 安全标头 -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+  <!-- DNS预解析 -->
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//avatars.githubusercontent.com">
+
+  <!-- RSS/Atom -->
   <% if (config.feed) { %>
     <%- feed_tag() %>
   <% } else if (theme.rss) { %>
     <%- feed_tag(theme.rss) %>
   <% } %>
+
+  <!-- Favicon -->
   <% if (theme.favicon){ %>
     <%- favicon_tag(theme.favicon) %>
   <% } %>
+
+  <!-- 样式表 -->
   <%- css('css/typing') %>
   <%- css('css/donate') %>
   <% if (theme.icons){ %>
@@ -35,5 +121,66 @@
   <% } %>
   <% if (theme.fancybox){ %>
     <%- css('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css') %>
+  <% } %>
+
+  <!-- 结构化数据 -->
+  <% if (is_home()){ %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "<%= config.title %>",
+    "description": "<%= config.description %>",
+    "url": "<%= config.url %>",
+    "author": {
+      "@type": "Person",
+      "name": "<%= config.author %>",
+      "url": "<%= config.url %>/about/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "<%= config.title %>",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "<%= config.url %>/images/logo.png"
+      }
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "<%= config.url %>/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <% } %>
+
+  <% if (is_post()){ %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "<%= page.title %>",
+    "description": "<%= page.description || config.description %>",
+    "image": "<%= page.cover || config.url + '/images/og-image.jpg' %>",
+    "author": {
+      "@type": "Person",
+      "name": "<%= config.author %>"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "<%= config.title %>",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "<%= config.url %>/images/logo.png"
+      }
+    },
+    "datePublished": "<%= page.date.toISOString() %>",
+    "dateModified": "<%= page.updated.toISOString() %>",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "<%= page.permalink %>"
+    }
+  }
+  </script>
   <% } %>
 </head>
