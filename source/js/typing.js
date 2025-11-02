@@ -76,7 +76,8 @@
 			}
 		});
 
-		// 主题切换功能 - 优化版本
+		// 主题切换功能 - 已暂时禁用
+		/*
 		const themeToggle = $('#theme-toggle');
 		const themeIconSun = $('.theme-icon-sun');
 		const themeIconMoon = $('.theme-icon-moon');
@@ -216,5 +217,6 @@
 				switchTheme(!currentIsDark);
 			});
 		});
+		*/
   });
 })(jQuery)

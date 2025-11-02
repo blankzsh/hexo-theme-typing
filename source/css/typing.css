@@ -1150,6 +1150,8 @@ blockquote {
   transform: scale(0.3) rotate(180deg);
 }
 
+/* 深色模式主题切换按钮样式 - 暂时禁用 */
+/*
 /* 深色模式下的主题切换按钮 */
 .dark .theme-toggle {
   color: #ddd !important;
@@ -1190,6 +1192,7 @@ blockquote {
   opacity: 0 !important;
   transform: scale(0.3) rotate(-180deg) !important;
 }
+*/
 
 /* 左侧导航布局下的主题切换按钮 */
 .nav-left .theme-toggle {
@@ -1211,6 +1214,8 @@ blockquote {
   background: none;
 }
 
+/* 导航栏深色主题样式 - 暂时禁用 */
+/*
 .dark .nav-left .theme-toggle {
   color: #aaa;
 }
@@ -1247,6 +1252,7 @@ blockquote {
   background-color: rgba(255, 255, 255, 0.1);
   color: #22c5e5;
 }
+*/
 
 .mobile-nav {
   display: none;
@@ -1599,9 +1605,12 @@ blockquote {
   text-align: left;
 }
 
+/* 移动导航深色样式 - 暂时禁用 */
+/*
 .dark .mobile-nav-link {
   background: #3f3f3f;
 }
+*/
 
 @media (max-width: 768px) {
   /* hide desktop nav */
@@ -1638,9 +1647,10 @@ blockquote {
 
 /************  mobile navigation menu end ***********/
 
-/************  dark mode  ***********/
+/************ dark mode - 暂时禁用 ************/
 
-/* 全局主题过渡动画 */
+/* 全局主题过渡动画 - 暂时注释 */
+/*
 body {
   transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1669,14 +1679,20 @@ img, video, iframe {
 .theme-icon-moon {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
+*/
 
+/* 深色模式样式 - 暂时禁用 */
+/*
 .dark {
   background-color: #3f3f3f;
   color: #d8d8d8;
   transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+*/
 
+/* 深色模式样式 - 暂时禁用 */
+/*
 .dark .container,
 .dark .footer {
   background-color: #3f3f3f;
@@ -1701,6 +1717,7 @@ img, video, iframe {
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+*/
 
 /* 为普通链接也添加过渡动画 */
 a {
@@ -1708,6 +1725,8 @@ a {
               border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* 继续深色模式样式 - 暂时禁用 */
+/*
 .dark .home {
     color: #d8d8d8;
   }
@@ -1734,6 +1753,7 @@ a {
         color: #fff;
         transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
+*/
 
 /* 为文章页面添加主题切换按钮样式支持 */
 .article .theme-toggle {
@@ -1755,6 +1775,8 @@ a {
   background: none !important;
 }
 
+/* 深色模式样式 - 暂时禁用 */
+/*
 .dark .article .theme-toggle {
   color: #aaa !important;
 }
@@ -1764,7 +1786,10 @@ a {
   border: 0 !important;
   background: none !important;
 }
+*/
 
+/* 继续深色样式 - 暂时禁用 */
+/*
 .dark .archive-container .page-nav,
     .dark .archive-container .article-nav,
     .dark .category-container .page-nav,
@@ -1783,7 +1808,10 @@ a {
 .dark .archive-container .page-nav a:hover, .dark .archive-container .article-nav a:hover, .dark .category-container .page-nav a:hover, .dark .category-container .article-nav a:hover, .dark .tag-container .page-nav a:hover, .dark .tag-container .article-nav a:hover, .dark .article .page-nav a:hover, .dark .article .article-nav a:hover {
         color: #fff;
       }
+*/
 
+/* 最终深色模式样式块 - 暂时禁用 */
+/*
 .dark .archive-container .article-entry blockquote footer strong,
     .dark .archive-container .article-meta a,
     .dark .category-container .article-entry blockquote footer strong,
@@ -1841,6 +1869,7 @@ a {
 .dark .article-entry .highlight .line.marked {
         background: #444;
       }
+*/
 
 /************  dark mode end  ************/
 
