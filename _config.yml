@@ -4,6 +4,7 @@ dark: false
 # Header
 menu:
   Home: /
+  Posts: /posts
   Archives: /archives
   About: /about
 
@@ -18,7 +19,7 @@ fancybox: true
 
 # Miscellaneous
 google_analytics:
-favicon: /favicon.ico
+favicon: /favicon.svg
 twitter:
 google_plus:
 fb_admins:
@@ -26,24 +27,19 @@ fb_app_id:
 
 
 # Profile
-nickname: NickName
-description: Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Fusce eget urna vitae velit *eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque* penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Aliquam eleifend dolor vitae [libero pharetra](http://hexo.io) adipiscing. Etiam adipiscing dolor a quam tempor, eu convallis nulla varius. Aliquam sollicitudin risus a porta aliquam.
+nickname: Toni Wang
+description: "**Hardware Engineer** | Amateur Web Development Enthusiast. I love to delve into challenges, face difficulties, and solve complex problems. Passionate about both hardware engineering and web development, always seeking to expand my knowledge and skills."
 
 # Load fontawesome icons? Also see the links option
-icons: false
+icons: true
 
 # Footer area links
 # NOTICE) If you set "icons: false" link names will be clear text
 # If "icons: true" link names will interpreted as fontawesome icon names
 # NOTICE) Use the fontawesome icon names without the fa- prefix (http://fontawesome.io/cheatsheet/)
 links:
-  book: /archives/
-  globe: https://github.com/geekplux/hexo-theme-typing
-  twitter: https://twitter.com/
-  github-alt: https://github.com/
-  youtube-play: https://www.youtube.com/
-  stack-overflow: https://stackoverflow.com/
-  google-plus: https://plus.google.com/
+  github: https://github.com/blankzsh
+  envelope: mailto:shell7@petalmail.com
   rss: /atom.xml
 
 # nav position (top, left. top is default)

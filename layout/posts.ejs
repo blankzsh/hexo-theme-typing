@@ -1,0 +1,102 @@
+<div class="posts-container">
+  <%- partial('_partial/header', {}, { cache: true }) %>
+  <% if (theme.nav === 'left'){ %>
+    <hr class="header-hr header-hr-left"/>
+  <% } else { %>
+    <hr class="header-hr"/>
+  <% } %>
+
+  <div class="posts-page">
+    <style>
+      /* 确保在深色模式下也能正常显示 */
+      body {
+        background-color: #fff;
+      }
+
+      .article-inner {
+        background-color: #fff;
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        div[style*="max-width: 600px"] {
+          padding: 0 15px;
+        }
+
+        div[style*="display: flex"] {
+          flex-direction: column;
+          align-items: flex-start !important;
+        }
+
+        div[style*="flex: 1"] {
+          margin-right: 0 !important;
+          margin-bottom: 5px;
+        }
+
+        h1[style*="font-size: 48px"] {
+          font-size: 36px !important;
+          margin: 40px 0 60px 0 !important;
+        }
+
+        h2[style*="font-size: 28px"] {
+          font-size: 24px !important;
+          margin-bottom: 25px !important;
+        }
+      }
+    </style>
+
+    <!-- 页面标题 -->
+    <h1 style="font-size: 48px; font-weight: 700; color: #000; text-align: center; margin: 0 0 60px 0; padding: 0;">
+      <%- page.title %>
+    </h1>
+
+    <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
+
+    <%
+    // 获取所有文章并按年份分组
+    var posts = site.posts.sort('-date');
+    var postsByYear = {};
+
+    posts.forEach(function(post) {
+      if (post.layout === 'post') {
+        var year = post.date.year();
+        if (!postsByYear[year]) {
+          postsByYear[year] = [];
+        }
+        postsByYear[year].push(post);
+      }
+    });
+    %>
+
+    <% Object.keys(postsByYear).sort(function(a, b) { return b - a; }).forEach(function(year) { %>
+      <!-- <%= year %>年文章 -->
+      <div style="margin-bottom: 60px;">
+        <h2 style="font-size: 28px; font-weight: 300; color: #999; margin: 0 0 30px 0; padding: 0;"><%= year %></h2>
+
+        <% postsByYear[year].forEach(function(post) { %>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 15px 0; border-bottom: 1px solid #f0f0f0;">
+            <div style="flex: 1; margin-right: 20px;">
+              <a href="<%- url_for(post.path) %>" style="color: #000; text-decoration: none; font-size: 16px; font-weight: 400; line-height: 1.4;">
+                <%- post.title %>
+              </a>
+            </div>
+            <div style="color: #999; font-size: 14px; white-space: nowrap;">
+              <%= post.date.format('YYYY-MM-DD') %>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% }); %>
+
+    <% if (Object.keys(postsByYear).length === 0) { %>
+      <div style="margin-bottom: 60px;">
+        <h2 style="font-size: 28px; font-weight: 300; color: #999; margin: 0 0 30px 0; padding: 0;">暂无文章</h2>
+        <div style="text-align: center; margin: 60px 0; color: #999;">
+          <p>暂无文章</p>
+        </div>
+      </div>
+    <% } %>
+
+    </div>
+  </div>
+</div>

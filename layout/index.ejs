@@ -1,22 +1,54 @@
 <div class="home">
   <div class="content">
+    <!-- 主要个人信息区域 -->
     <div class="profile">
-      <h1 class="nickname"><%= theme.nickname %></h1>
+      <div class="profile-header">
+        <div class="avatar">
+          <img src="https://avatars.githubusercontent.com/u/105968622?v=4" alt="<%= theme.nickname %>" class="avatar-img">
+        </div>
+        <div class="profile-info">
+          <h1 class="nickname"><%= theme.nickname %></h1>
+          <div class="title">Hardware Engineer & Web Developer</div>
+        </div>
+      </div>
+
       <div class="description">
-        <p><%- markdown(theme.description) %></p>
+        <%- markdown(theme.description) %>
+      </div>
+
+      <!-- 社交链接 -->
+      <div class="social-section">
+        <% if (theme.icons) { %>
+          <div class="social-icons">
+            <% for (var key in theme.links) { %>
+              <a href="<%- url_for(theme.links[key]) %>" class="social-link" title="<%= key %>">
+                <i class="fa fa-<%= key %>"></i>
+              </a>
+            <% } %>
+          </div>
+        <% } else { %>
+          <div class="social-text">
+            <% for (var key in theme.links) { %>
+              <a href="<%- url_for(theme.links[key]) %>" class="social-link"><%= key %></a>
+            <% } %>
+          </div>
+        <% } %>
       </div>
     </div>
-    <hr/>
+
+    <!-- 分隔线 -->
+    <div class="separator"></div>
+
+    <!-- 快速导航 -->
+    <div class="quick-nav">
+      <a href="/archives/" class="nav-item">
+        <i class="fa fa-book"></i>
+        <span>Archives</span>
+      </a>
+      <a href="/about/" class="nav-item">
+        <i class="fa fa-user"></i>
+        <span>About</span>
+      </a>
+    </div>
   </div>
 </div>
-    <ul class="footer-links">
-      <% for (var key in theme.links) { %>
-        <li>
-	  <% if (theme.icons){ %>
-            <a href="<%- url_for(theme.links[key]) %>"><span class="fa fa-<%= key %>"></span></a>
-	  <% } else { %>
-	    <a href="<%- url_for(theme.links[key]) %>"><%= key %></a>
-	  <% } %>
-        </li>
-      <% } %>
-    </ul>
