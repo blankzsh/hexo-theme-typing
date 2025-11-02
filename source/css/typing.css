@@ -2021,10 +2021,10 @@ a {
     border: 1px solid #00c841;
 }
 
-/* 隐藏代码块行号 - 强化版本 */
+/* 隐藏代码块行号 - 精确版本 */
 .article-entry .highlight .gutter,
 .article-entry .highlight .line-numbers,
-.article-entry .highlight td:first-child,
+.article-entry .highlight td.gutter,
 .article-entry .highlight .lineno {
     display: none !important;
     visibility: hidden !important;
@@ -2032,6 +2032,12 @@ a {
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
+}
+
+/* 确保代码列不被意外隐藏 */
+.article-entry .highlight td.code {
+    display: table-cell !important;
+    visibility: visible !important;
 }
 
 /* 确保代码列占满宽度 */
