@@ -1888,7 +1888,7 @@ a {
   font-size: 14px;
   overflow: auto;
   line-height: 1.8;
-  font-family: 'Hack Nerd Font Mono', 'Hack', 'Courier New', monospace;
+  font-family: 'Hack Nerd Font Mono', 'JetBrains Mono', 'Hack', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', 'Consolas', 'Courier New', monospace;
 }
 
 .article-entry pre code {
@@ -1904,7 +1904,7 @@ a {
   font-size: 14px;
   overflow: auto;
   line-height: 1.8;
-  font-family: 'Hack Nerd Font Mono', 'Hack', 'Courier New', monospace;
+  font-family: 'Hack Nerd Font Mono', 'JetBrains Mono', 'Hack', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', 'Consolas', 'Courier New', monospace;
 }
 
 .article-entry .highlight pre {
@@ -2021,30 +2021,6 @@ a {
     border: 1px solid #00c841;
 }
 
-/* 隐藏代码块行号 - 精确版本 */
-.article-entry .highlight .gutter,
-.article-entry .highlight .line-numbers,
-.article-entry .highlight td.gutter,
-.article-entry .highlight .lineno {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
-}
-
-/* 确保代码列不被意外隐藏 */
-.article-entry .highlight td.code {
-    display: table-cell !important;
-    visibility: visible !important;
-}
-
-/* 确保代码列占满宽度 */
-.article-entry .highlight td:last-child,
-.article-entry .highlight .code {
-    width: 100% !important;
-}
 
 .article-entry .highlight table {
     border-collapse: collapse;
@@ -2055,15 +2031,26 @@ a {
     padding: 0;
 }
 
-/* 移除gutter后调整代码显示 */
-.article-entry .highlight .code {
-    width: 100%;
-}
 
 .article-entry .highlight .code pre {
     margin: 0;
     padding: 20px;
-    font-family: 'Hack Nerd Font Mono', 'Hack', 'Courier New', monospace;
+    font-family: 'Hack Nerd Font Mono', 'JetBrains Mono', 'Hack', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', 'Consolas', 'Courier New', monospace;
+}
+
+/* 代码块字体设置 - 只针对代码块，不影响行内代码 */
+.article-entry pre,
+.article-entry .highlight,
+.article-entry .highlight pre,
+.article-entry .highlight code,
+.article-entry .highlight td,
+.article-entry .highlight .gutter,
+.article-entry .highlight .code {
+    font-family: 'Hack Nerd Font Mono', 'JetBrains Mono', 'Hack', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', 'Consolas', 'Courier New', monospace !important;
+    font-feature-settings: "liga" 1, "calt" 1, "ss01" 1, "ss02" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* 为代码块添加上边距以避免与点重叠 */
@@ -2077,69 +2064,6 @@ a {
     margin-top: 15px;
 }
 
-/* 代码块复制按钮样式 */
-.article-entry .highlight .copy-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    width: 32px;
-    height: 32px;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    transition: all 0.2s ease;
-    z-index: 10;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    opacity: 0.7;
-}
-
-.article-entry .highlight .copy-button:hover {
-    background: rgba(255, 255, 255, 1);
-    border-color: #1abc9c;
-.article-entry .highlight .copy-button.copied {
-    background: rgba(26, 188, 156, 0.9);
-    border-color: #1abc9c;
-    color: white;
-    opacity: 1;
-}
-
-.article-entry .highlight .copy-button.copied:hover {
-    background: rgba(26, 188, 156, 1);
-}
-
-/* 暗色模式下的复制按钮样式 */
-.dark .article-entry .highlight .copy-button {
-    background: rgba(30, 30, 30, 0.9);
-    border-color: #444;
-    color: #ccc;
-    opacity: 0.7;
-}
-
-.dark .article-entry .highlight .copy-button:hover {
-    background: rgba(40, 40, 40, 1);
-    border-color: #22c5e5;
-    color: #22c5e5;
-    box-shadow: 0 2px 8px rgba(34, 197, 229, 0.3);
-    opacity: 1;
-}
-
-.dark .article-entry .highlight .copy-button.copied {
-    background: rgba(34, 197, 229, 0.9);
-    border-color: #22c5e5;
-    color: white;
-    opacity: 1;
-}
-
-.dark .article-entry .highlight .copy-button.copied:hover {
-    background: rgba(34, 197, 229, 1);
-}
 
 .tags-content {
     text-align: center;
@@ -2339,17 +2263,6 @@ a {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-    .article-entry .highlight .copy-button {
-        width: 28px;
-        height: 28px;
-        top: 8px;
-        right: 8px;
-    }
-
-    .article-entry .highlight .copy-button svg {
-        width: 14px;
-        height: 14px;
-    }
 
     /* 标签云响应式设计 */
     .tag-cloud-container,
