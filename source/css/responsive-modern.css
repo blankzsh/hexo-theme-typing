@@ -1,0 +1,631 @@
+/* ===== 现代化响应式布局系统 ===== */
+
+/* CSS变量定义 */
+:root {
+  --container-max-width: 1200px;
+  --container-padding: 2rem;
+  --header-height: 60px;
+  --mobile-breakpoint: 768px;
+  --tablet-breakpoint: 1024px;
+  --small-mobile-breakpoint: 480px;
+  --tiny-mobile-breakpoint: 360px;
+}
+
+/* 基础容器 */
+.home-body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  padding: var(--header-height) 0 0 0;
+  position: relative;
+}
+
+.home {
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.home .content {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 var(--container-padding);
+  margin: 0 auto;
+}
+
+/* 响应式断点系统 */
+
+/* 大屏平板 (1024px - 769px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  :root {
+    --container-padding: 1.5rem;
+    --header-height: 70px;
+  }
+
+  .home {
+    padding: 1.5rem 0;
+  }
+
+  .home .content {
+    max-width: 500px;
+  }
+
+  .home .profile .profile-header {
+    grid-gap: 2rem;
+    gap: 2rem;
+  }
+
+  .home .profile .avatar .avatar-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .home .profile .profile-info .nickname {
+    font-size: 2.1em;
+  }
+
+  .home .profile .profile-info .title {
+    font-size: 1em;
+  }
+}
+
+/* 中等平板和小屏手机 (768px - 481px) */
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 1rem;
+    --header-height: 80px;
+  }
+
+  .home-body {
+    grid-template-rows: auto minmax(60vh, auto) auto;
+    padding: var(--header-height) 0 0 0;
+    overflow-x: hidden;
+  }
+
+  .home {
+    padding: 1rem 0;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .home .content {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 var(--container-padding);
+  }
+
+  .home .profile {
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+
+  .home .profile .profile-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+    justify-items: center;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .home .profile .profile-info {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .home .profile .avatar .avatar-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .home .profile .profile-info .nickname {
+    font-size: 1.9em;
+    margin-bottom: 0.5rem;
+  }
+
+  .home .profile .profile-info .title {
+    font-size: 0.95em;
+    margin-bottom: 0;
+  }
+
+  .home .profile .description {
+    margin: 1rem auto;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .home .profile .description p {
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+
+  .home .profile .social-section .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .home .profile .social-section .social-icons .social-link {
+    width: 36px;
+    height: 36px;
+  }
+
+  .home .quick-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home .quick-nav .nav-item {
+    padding: 1rem;
+    text-align: center;
+  }
+}
+
+/* 小屏手机 (480px - 361px) */
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 0.75rem;
+    --header-height: 60px;
+  }
+
+  .home-body {
+    grid-template-rows: auto minmax(70vh, auto) auto;
+  }
+
+  .home {
+    padding: 0.75rem 0;
+    align-items: flex-start;
+  }
+
+  .home .content {
+    padding: 0 var(--container-padding);
+  }
+
+  .home .profile {
+    padding: 1rem 0;
+  }
+
+  .home .profile .profile-header {
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .home .profile .avatar .avatar-img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .home .profile .profile-info .nickname {
+    font-size: 1.8em;
+    margin-bottom: 0.5rem;
+  }
+
+  .home .profile .profile-info .title {
+    font-size: 0.9em;
+  }
+
+  .home .profile .description {
+    margin: 0.75rem auto;
+    padding: 0 0.75rem;
+  }
+
+  .home .profile .description p {
+    font-size: 0.9em;
+    line-height: 1.5;
+  }
+
+  .home .profile .social-section {
+    margin-top: 1rem;
+  }
+
+  .home .profile .social-section .social-icons {
+    gap: 0.75rem;
+  }
+
+  .home .profile .social-section .social-icons .social-link {
+    width: 32px;
+    height: 32px;
+  }
+
+  .home .quick-nav {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    max-width: 350px;
+  }
+
+  .home .quick-nav .nav-item {
+    padding: 0.75rem;
+    font-size: 0.85em;
+  }
+
+  .home .quick-nav .nav-item i {
+    font-size: 1.1em;
+  }
+
+  .home .quick-nav .nav-item span {
+    font-size: 0.75em;
+  }
+}
+
+/* 超小屏手机 (360px及以下) */
+@media (max-width: 360px) {
+  :root {
+    --container-padding: 0.5rem;
+    --header-height: 50px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .home-body {
+    grid-template-rows: auto minmax(80vh, auto) auto;
+  }
+
+  .home {
+    padding: 0.5rem 0;
+    align-items: flex-start;
+  }
+
+  .home .content {
+    padding: 0 var(--container-padding);
+  }
+
+  .home .profile {
+    padding: 0.75rem 0;
+  }
+
+  .home .profile .profile-header {
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .home .profile .avatar .avatar-img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .home .profile .profile-info .nickname {
+    font-size: 1.6em;
+    margin-bottom: 0.25rem;
+    line-height: 1.1;
+  }
+
+  .home .profile .profile-info .title {
+    font-size: 0.85em;
+  }
+
+  .home .profile .description {
+    margin: 0.5rem auto;
+    padding: 0 0.5rem;
+  }
+
+  .home .profile .description p {
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+
+  .home .profile .social-section {
+    margin-top: 0.75rem;
+  }
+
+  .home .profile .social-section .social-icons {
+    gap: 0.5rem;
+  }
+
+  .home .profile .social-section .social-icons .social-link {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8em;
+  }
+
+  .home .quick-nav {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    max-width: 300px;
+  }
+
+  .home .quick-nav .nav-item {
+    padding: 0.5rem;
+    font-size: 0.8em;
+  }
+
+  .home .quick-nav .nav-item i {
+    font-size: 1em;
+  }
+
+  .home .quick-nav .nav-item span {
+    font-size: 0.7em;
+  }
+}
+
+/* 窄高比设备特殊优化 (如360x640, 360x740等) */
+@media (max-width: 375px) and (max-height: 800px) and (orientation: portrait) {
+  :root {
+    --header-height: 40px;
+  }
+
+  .home-body {
+    grid-template-rows: auto minmax(85vh, auto) auto;
+  }
+
+  .home {
+    padding: 0.25rem 0;
+  }
+
+  .home .profile {
+    padding: 0.5rem 0;
+  }
+
+  .home .profile .profile-header {
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .home .profile .avatar .avatar-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .home .profile .profile-info .nickname {
+    font-size: 1.5em;
+  }
+
+  .home .profile .description {
+    margin: 0.5rem auto;
+  }
+
+  .home .profile .description p {
+    font-size: 0.8em;
+  }
+
+  .home .quick-nav {
+    margin-top: 0.5rem;
+  }
+}
+
+/* 极小屏设备 (iPhone SE, 320px宽度) */
+@media (max-width: 320px) {
+  :root {
+    --container-padding: 0.25rem;
+    --header-height: 40px;
+  }
+
+  body {
+    font-size: 13px;
+  }
+
+  .home-body {
+    grid-template-rows: auto minmax(90vh, auto) auto;
+  }
+
+  .home {
+    padding: 0.25rem 0;
+  }
+
+  .home .content {
+    padding: 0 var(--container-padding);
+  }
+
+  .home .profile {
+    padding: 0.5rem 0;
+  }
+
+  .home .profile .profile-header {
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .home .profile .avatar .avatar-img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .home .profile .profile-info .nickname {
+    font-size: 1.4em;
+    margin-bottom: 0.25rem;
+  }
+
+  .home .profile .profile-info .title {
+    font-size: 0.8em;
+  }
+
+  .home .profile .description {
+    margin: 0.5rem auto;
+    padding: 0 0.25rem;
+  }
+
+  .home .profile .description p {
+    font-size: 0.8em;
+    line-height: 1.3;
+  }
+
+  .home .quick-nav {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 0.5rem;
+    max-width: 280px;
+  }
+
+  .home .quick-nav .nav-item {
+    padding: 0.5rem;
+    font-size: 0.75em;
+  }
+}
+
+/* 横屏模式优化 */
+@media (max-width: 768px) and (orientation: landscape) {
+  .home-body {
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .home {
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .home .profile .profile-header {
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    text-align: left;
+    justify-items: center;
+  }
+
+  .home .profile .profile-info {
+    text-align: left;
+  }
+
+  .home .profile .description {
+    margin: 1rem 0;
+    text-align: left;
+  }
+
+  .home .profile .description p {
+    text-align: left;
+  }
+
+  .home .quick-nav {
+    justify-content: flex-start;
+    margin-top: 1rem;
+  }
+}
+
+/* 视网膜屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .home .profile .avatar .avatar-img {
+    border-width: 1px;
+  }
+
+  .home .profile .social-section .social-icons .social-link {
+    transition: all 0.2s ease;
+  }
+}
+
+/* 暗色模式响应式优化 */
+@media (prefers-color-scheme: dark) {
+  .home-body {
+    background: #1a1a1a;
+  }
+
+  .home {
+    color: #e0e0e0;
+  }
+
+  .home .profile .profile-info .nickname,
+  .home .profile .profile-info .title {
+    color: #ffffff;
+  }
+
+  .home .profile .description p {
+    color: #b0b0b0;
+  }
+}
+
+/* 无障碍访问优化 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .home .profile .avatar .avatar-img:hover {
+    transform: none;
+  }
+
+  .home .profile .social-section .social-icons .social-link:hover {
+    transform: none;
+  }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  .home .profile .avatar .avatar-img {
+    border-width: 3px;
+    border-color: #000000;
+  }
+
+  .home .profile .social-section .social-icons .social-link {
+    border: 2px solid #000000;
+  }
+}
+
+/* 移动端触摸优化 */
+@media (hover: none) and (pointer: coarse) {
+  .home .profile .social-section .social-icons .social-link {
+    padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .home .quick-nav .nav-item {
+    padding: 12px 16px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* 动态视口高度适配 */
+@media (max-height: 600px) {
+  .home-body {
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .home {
+    align-items: flex-start;
+    padding: 1rem 0;
+  }
+}
+
+/* 大屏桌面优化 */
+@media (min-width: 1025px) {
+  .home .content {
+    max-width: 700px;
+  }
+
+  .home .profile .profile-header {
+    grid-gap: 3rem;
+    gap: 3rem;
+  }
+
+  .home .profile .avatar .avatar-img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .home .profile .profile-info .nickname {
+    font-size: 2.8em;
+  }
+
+  .home .profile .profile-info .title {
+    font-size: 1.2em;
+  }
+
+  .home .profile .description {
+    margin: 2rem auto;
+  }
+
+  .home .profile .description p {
+    font-size: 1.1em;
+    line-height: 1.7;
+  }
+
+  .home .quick-nav {
+    gap: 2rem;
+    max-width: 500px;
+  }
+}
