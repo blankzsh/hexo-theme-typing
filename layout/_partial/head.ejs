@@ -22,7 +22,7 @@
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
 
   <!-- 基础Meta标签 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=0.1, user-scalable=yes">
   <meta name="description" content="<% if (page.description){ %><%= page.description %><% } else if (config.description){ %><%= config.description %><% } else { %><%= theme.description %><% } %>">
   <meta name="keywords" content="<% if (page.keywords){ %><%= page.keywords %><% } else if (page.tags && page.tags.length){ %><%= page.tags.map(function(tag) { return typeof tag === 'string' ? tag : (tag.name || ''); }).filter(Boolean).join(', ') %><% } else { %><%= config.keywords %><% } %>"
   <meta name="author" content="<% if (page.author){ %><%= page.author %><% } else { %><%= config.author %><% } %>">
