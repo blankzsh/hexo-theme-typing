@@ -1619,6 +1619,46 @@ blockquote {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 60px;
+    padding: 0 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eee;
+  }
+
+  /* 为首页内容添加足够的上边距，避免被固定header遮挡 */
+  .home-body {
+    padding-top: 60px;
+  }
+
+  .home {
+    padding-top: 1rem;
+  }
+
+  /* 确保昵称在移动端可见且不被挤压 */
+  .mobile-nav .nickname {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+
+  /* 确保菜单按钮可见 */
+  #menu-button {
+    font-size: 1rem;
+    padding: 8px 12px;
+    background: #007acc;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
   }
 
   /* 移动端主题切换按钮 */
@@ -2493,17 +2533,15 @@ pre .keyword,
   }
 }
 
-/* 中等平板和小屏手机 (768px - 481px) */
+/* 中等平板和小屏手机 (768px - 481px) - 更新现有移动端样式 */
 @media (max-width: 768px) {
-  :root {
-    --container-padding: 1rem;
-    --header-height: 80px;
+  /* 更新header高度以匹配实际的mobile-nav高度 */
+  .mobile-nav {
+    height: 60px; /* 覆盖之前过高的设置 */
   }
 
   .home-body {
-    grid-template-rows: auto minmax(60vh, auto) auto;
-    padding: var(--header-height) 0 0 0;
-    overflow-x: hidden;
+    padding-top: 60px; /* 确保与header高度一致 */
   }
 
   .home {
@@ -2600,13 +2638,24 @@ pre .keyword,
     --header-height: 60px;
   }
 
+  .mobile-nav {
+    height: 60px;
+    padding: 0 0.75rem;
+  }
+
   .home-body {
+    padding-top: 60px;
     grid-template-rows: auto minmax(70vh, auto) auto;
   }
 
   .home {
     padding: 0.75rem 0;
     align-items: flex-start;
+  }
+
+  .mobile-nav .nickname {
+    font-size: 1.1rem;
+    max-width: 150px;
   }
 
   .home .content {
@@ -2686,11 +2735,26 @@ pre .keyword,
     font-size: 14px;
   }
 
+  .mobile-nav {
+    height: 50px;
+    padding: 0 0.5rem;
+  }
+
   .home-body {
     min-height: 100vh;
     padding: 50px 0 5px 0;
     justify-content: flex-start;
     overflow-y: auto;
+  }
+
+  .mobile-nav .nickname {
+    font-size: 1rem;
+    max-width: 120px;
+  }
+
+  #menu-button {
+    font-size: 0.9rem;
+    padding: 6px 10px;
   }
 
   .home {
