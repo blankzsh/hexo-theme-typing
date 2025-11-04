@@ -33,7 +33,7 @@ menu:
   About: /about
 
 # 个人信息
-nickname: Toni Wang
+nickname: Chiway Wang
 description: "个人简介"
 
 # 社交链接
