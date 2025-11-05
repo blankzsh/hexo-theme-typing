@@ -1,0 +1,110 @@
+@charset "utf-8";
+
+/*
+ * 移动端响应式样式补充文件
+ *
+ * 此文件包含移动端特定的样式调整。
+ * 如需禁用移动端适配，请在 layout/_partial/head.ejs 中注释掉此文件的加载。
+ */
+
+/* 移动端导航菜单 */
+@media (max-width: 768px) {
+  /* 隐藏桌面导航 */
+  .main-nav {
+    display: none;
+  }
+
+  /* 显示移动端导航 */
+  .mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eee;
+  }
+
+  /* 首页内容适配 */
+  .home-body {
+    padding-top: 60px;
+  }
+
+  .home {
+    padding-top: 1rem;
+  }
+
+  .mobile-nav .nickname {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+
+  #menu-button {
+    font-size: 1rem;
+    padding: 8px 12px;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+/* 小屏幕设备优化 */
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+
+  .home .content {
+    width: 95%;
+    padding: 0 10px;
+  }
+
+  .home .profile {
+    padding: 25px 0 15px 0 !important;
+  }
+
+  .home .profile .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .home .profile .avatar .avatar-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .home .profile .profile-info .nickname {
+    font-size: 1.8em;
+    line-height: 1.1;
+  }
+}
+
+/* 超小屏幕设备优化 */
+@media (max-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+
+  .home .profile .avatar .avatar-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .home .profile .profile-info .nickname {
+    font-size: 1.6em;
+  }
+}
