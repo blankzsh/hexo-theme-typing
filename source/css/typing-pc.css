@@ -8,7 +8,17 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-rendering: optimizelegibility;
+  /* 移动端缩放优化 */
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
+
+/* 移动端允许文本选择和缩放 - 将在body主样式中合并 */
 
 /* 如果你的项目仅支持 IE9+ | Chrome | Firefox 等，推荐在 <html> 中添加 .borderbox 这个 class */
 
@@ -39,6 +49,16 @@ audio, canvas, video {
 
 body, button, input, select, textarea {
   font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+}
+
+/* 移动端允许文本选择和缩放 */
+body {
+  -webkit-touch-callout: default;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 button::-moz-focus-inner,
@@ -1249,6 +1269,11 @@ blockquote {
   display: none;
 }
 
+/* 确保PC端导航始终显示 */
+.main-nav {
+  display: block !important;
+}
+
 .archive-container,
 .category-container,
 .tag-container,
@@ -2298,60 +2323,5 @@ pre .keyword,
 
 /* 窄屏手机特殊优化 (如360x740等) */
 
-/* 极致小屏幕优化 (iPhone SE等) */
-
-    .archive-container .archive-footer, .archive-container .post-footer {
-      padding: 40px;
-    }
-      .archive-container .archive-article-header > a, .archive-container .archive-article-header > h1 {
-        width: 100%;
-      }
-
-  .mobile-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .main-nav {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    width: 50%;
-    padding: 20px;
-    border: 2px solid #777;
-    box-shadow: 5px 5px 5px #777;
-  }
-
-    .main-nav .main-nav-link {
-      display: block;
-      padding-bottom: 10px;
-    }
-  .article .nav-left {
-    position: absolute;
-  }
-    .article .nav-left .main-nav-link {
-      display: block;
-      padding-bottom: 10px;
-    }
-    /* 修复移动端文章页面的主题切换按钮 */
-    .article .nav-left .theme-toggle {
-      display: block !important;
-      padding-bottom: 10px !important;
-      margin-top: 0 !important;
-      text-align: left !important;
-      width: auto !important;
-      border-left: 2px solid transparent !important;
-    }
-
-    .article .nav-left .theme-toggle:hover {
-      border-left-color: #1abc9c !important;
-      background-color: transparent !important;
-    }
-
-    .dark .article .nav-left .theme-toggle:hover {
-      border-left-color: #22c5e5 !important;
-      background-color: transparent !important;
-    }
-}
 
 
