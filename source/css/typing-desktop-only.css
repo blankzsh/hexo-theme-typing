@@ -1270,6 +1270,10 @@ html, body {
   gap: 32px !important;
   margin-bottom: 20px !important;
   flex-wrap: wrap !important;
+  /* 向右偏移一些，让整体更居中 */
+  margin-left: 60px !important;
+  padding-left: 60px !important;
+  transform: translateX(40px) !important;
 }
 
 .home .profile .avatar {
