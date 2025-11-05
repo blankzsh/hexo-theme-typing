@@ -21,12 +21,22 @@
   <!-- SEO优化的标题 -->
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
 
-  <!-- 基础Meta标签 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.25, user-scalable=yes, shrink-to-fit=no">
-  <!-- 移动端缩放优化 -->
+  <!-- 基础Meta标签 - 强制桌面端显示 -->
+  <meta name="viewport" content="width=1200, initial-scale=1.0, user-scalable=yes">
+  <!-- 禁用移动端自适应 -->
   <meta name="format-detection" content="telephone=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <style>
+    /* 强制桌面端显示 - 内联样式确保优先级 */
+    body {
+      min-width: 1024px !important;
+      overflow-x: auto !important;
+    }
+    .mobile-nav {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  </style>
   <meta name="description" content="<% if (page.description){ %><%= page.description %><% } else if (config.description){ %><%= config.description %><% } else { %><%= theme.description %><% } %>">
   <meta name="keywords" content="<% if (page.keywords){ %><%= page.keywords %><% } else if (page.tags && page.tags.length){ %><%= page.tags.map(function(tag) { return typeof tag === 'string' ? tag : (tag.name || ''); }).filter(Boolean).join(', ') %><% } else { %><%= config.keywords %><% } %>"
   <meta name="author" content="<% if (page.author){ %><%= page.author %><% } else { %><%= config.author %><% } %>">
@@ -126,9 +136,9 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- 样式表 -->
-  <%- css('css/typing-pc') %>
-  <!-- 移动端样式控制 - 如需启用移动端样式，请取消注释下面的行 -->
-  <!-- <%- css('css/typing-mobile') %> -->
+  <%- css('css/typing-desktop-only') %>
+  <!-- PC端专用样式 - 强制所有设备显示桌面端布局 -->
+  <!-- 移动端样式已完全禁用 -->
   <%- css('css/donate') %>
   <% if (theme.icons){ %>
   <%- css('https://cdn.jsdelivr.net/npm/fork-awesome@1/css/fork-awesome.min.css') %>
