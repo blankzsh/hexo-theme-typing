@@ -1256,37 +1256,68 @@ html, body {
   margin: 0 auto !important;
 }
 
+/* 保持原本PC端的居中布局样式 */
 .home .profile {
-  padding: 60px 0 40px 0 !important;
-  text-align: left !important;
+  padding: 60px 0 30px 0 !important;
+  text-align: center !important;
 }
 
 .home .profile .profile-header {
-  flex-direction: row !important;
+  display: flex !important;
   align-items: center !important;
-  gap: 30px !important;
-  justify-content: flex-start !important;
+  justify-content: center !important;
+  grid-gap: 32px !important;
+  gap: 32px !important;
+  margin-bottom: 20px !important;
+  flex-wrap: wrap !important;
+}
+
+.home .profile .avatar {
+  flex-shrink: 0 !important;
 }
 
 .home .profile .avatar .avatar-img {
-  width: 120px !important;
-  height: 120px !important;
+  width: 100px !important;
+  height: 100px !important;
   border-radius: 50% !important;
+  border: 2px solid #222 !important;
+  transition: transform 0.3s ease, border-color 0.3s ease !important;
+}
+
+.home .profile .avatar .avatar-img:hover {
+  transform: scale(1.05) !important;
+  border-color: #22c5e5 !important;
 }
 
 .home .profile .profile-info {
-  flex: 1 !important;
   text-align: left !important;
+  flex: 1 !important;
+  min-width: 250px !important;
+  max-width: 500px !important;
 }
 
 .home .profile .profile-info .nickname {
   font-size: 2.5em !important;
+  font-weight: 300 !important;
+  margin: 0 0 12px 0 !important;
+  color: #222 !important;
   line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
 }
 
-.home .profile .profile-info .description {
-  font-size: 1.2em !important;
-  line-height: 1.6 !important;
+.home .profile .profile-info .title {
+  font-size: 1.1em !important;
+  color: #aeb4b9 !important;
+  font-weight: 300 !important;
+  margin-bottom: 0 !important;
+  letter-spacing: 0.01em !important;
+}
+
+.home .profile .description {
+  margin: 15px auto !important;
+  max-width: 500px !important;
+  font-size: 1.05em !important;
+  line-height: 1.7 !important;
 }
 
 /* 禁用所有可能的移动端容器样式 */
